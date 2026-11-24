@@ -1,0 +1,51 @@
+@startuml
+skinparam monochrome true
+skinparam style strictuml
+skinparam classBackgroundColor White
+skinparam backgroundColor White
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+
+class Apolice {
+  + setEstado(estado : ApoliceEstado)
+  + restauraEstado(indice : int)
+  + getEstados() : List<ApoliceEstado>
+}
+
+interface ApoliceEstado <<interface>> {
+  + getNomeEstado() : String
+}
+
+class ApoliceEstadoEmAnalise {
+}
+
+class ApoliceEstadoAtiva {
+}
+
+class ApoliceEstadoSuspensa {
+}
+
+class ApoliceEstadoCancelada {
+}
+
+class ApoliceEstadoEncerrada {
+}
+
+class ApoliceEstadoRecusada {
+}
+
+Apolice --> "1" ApoliceEstado : estado
+Apolice --> "0..*" ApoliceEstado : memento
+ApoliceEstado <|.. ApoliceEstadoEmAnalise
+ApoliceEstado <|.. ApoliceEstadoAtiva
+ApoliceEstado <|.. ApoliceEstadoSuspensa
+ApoliceEstado <|.. ApoliceEstadoCancelada
+ApoliceEstado <|.. ApoliceEstadoEncerrada
+ApoliceEstado <|.. ApoliceEstadoRecusada
+ApoliceEstadoEmAnalise --> "1" ApoliceEstadoEmAnalise : instance
+ApoliceEstadoAtiva --> "1" ApoliceEstadoAtiva : instance
+ApoliceEstadoSuspensa --> "1" ApoliceEstadoSuspensa : instance
+ApoliceEstadoCancelada --> "1" ApoliceEstadoCancelada : instance
+ApoliceEstadoEncerrada --> "1" ApoliceEstadoEncerrada : instance
+ApoliceEstadoRecusada --> "1" ApoliceEstadoRecusada : instance
+@enduml
